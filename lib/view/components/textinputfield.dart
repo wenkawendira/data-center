@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import "../../model/constraints.dart";
 
 class TextInputField extends StatelessWidget {
@@ -18,16 +18,17 @@ class TextInputField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: TextStyle(
-          fontSize: 16,
-          fontFamily: 'Poppins',
-          color: AppColor.kTextColor.withOpacity(0.5),
+        hintStyle: GoogleFonts.albertSans(
+          textStyle: TextStyle(
+            fontSize: 14,
+            color: AppColor.kTextColor.withOpacity(0.5),
+          ),
         ),
+        filled: true,
+        fillColor: AppColor.kOffButtonColor,
         //border around the textfield
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: AppColor.kTextColor,
-          ),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(

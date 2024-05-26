@@ -1,23 +1,25 @@
-import 'package:ehr_mobile/model/constraints.dart';
-import 'package:ehr_mobile/view/screens/signup.dart';
+import 'package:ehr_mobile/view/screens/LoginPage.dart';
 import 'package:flutter/material.dart';
+import 'package:ehr_mobile/model/constraints.dart';
 import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -41,19 +43,24 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 56),
                 Container(
                   width: double.infinity,
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   child: Text(
-                    'Selamat Datang!',
+                    'Nomor ID',
                     style: GoogleFonts.albertSans(
                       textStyle: TextStyle(
-                        color: AppColor.kButtonColor,
-                        fontSize: 30,
+                        color: AppColor.kTextColor,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
                 SizedBox(height: 12),
+                TextInputField(
+                  controller: nameController,
+                  hintText: 'SRP001',
+                ),
+                SizedBox(height: 20),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -71,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 12),
                 TextInputField(
                   controller: emailController,
-                  hintText: 'Email',
+                  hintText: 'johndoe@gmail.com',
                 ),
                 SizedBox(height: 20),
                 Container(
@@ -93,11 +100,11 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordController,
                   hintText: 'Password',
                 ),
-                SizedBox(height: 37),
+                SizedBox(height: 56),
                 PageButton(
-                  text: 'Masuk',
+                  text: 'Daftar',
                   onTap: () {
-                    // Placeholder for sign-in functionality
+                    // Placeholder for sign-up functionality
                   },
                 ),
                 SizedBox(height: 44),
@@ -105,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Tidak punya akun?',
+                      'Sudah memiliki akun?',
                       style: GoogleFonts.albertSans(
                         textStyle: TextStyle(
                           color: AppColor.kTextColor,
@@ -117,11 +124,11 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignupPage()),
+                          MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
                       child: Text(
-                        'Daftar',
+                        'Masuk',
                         style: GoogleFonts.albertSans(
                           textStyle: TextStyle(
                             color: AppColor.kButtonColor,

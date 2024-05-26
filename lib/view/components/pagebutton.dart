@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ehr_mobile/model/constraints.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PageButton extends StatelessWidget {
   const PageButton({
@@ -16,23 +17,21 @@ class PageButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.symmetric(vertical: 12),
         alignment: Alignment.center,
         width: double.infinity,
         decoration: BoxDecoration(
           color: AppColor.kButtonColor,
-          border: Border.all(
-            color: AppColor.kTextColor,
-          ),
+          border: Border.all(color: Colors.transparent),
           borderRadius: BorderRadius.circular(4),
         ),
         child: Text(
           text,
-          style: TextStyle(
+          style: GoogleFonts.albertSans(
+              textStyle: TextStyle(
             color: AppColor.kBackgroundColor,
-            fontSize: 16,
-            fontFamily: 'Poppins',
-          ),
+            fontSize: 14,
+          )),
         ),
       ),
     );
