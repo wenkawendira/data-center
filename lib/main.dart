@@ -1,6 +1,5 @@
 import 'package:ehr_mobile/view/screens/LoginPage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'REKMED',
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: LoginPage()
     );
   }
 }

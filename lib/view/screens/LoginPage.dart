@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../components/navbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,12 +16,34 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  int _selectedIndex = 0;
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Pemeriksaan',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    ),
+    Text(
+      'Beranda',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    ),
+    Text(
+      'Profil',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -136,6 +159,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: Navbar(
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
       ),
     );
   }
