@@ -1,5 +1,6 @@
 import 'package:ehr_mobile/view/screens/LoginPage.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
+import 'package:ehr_mobile/view/screens/pemeriksaan.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'REKMED',
       debugShowCheckedModeBanner: false,
-      home: Main()
+      home: Pemeriksaan()
     );
   }
 }

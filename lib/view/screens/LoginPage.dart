@@ -27,18 +27,18 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Pemeriksaan',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      'Beranda',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      'Profil',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
+    // Text(
+    //   'Pemeriksaan',
+    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    // ),
+    // Text(
+    //   'Beranda',
+    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    // ),
+    // Text(
+    //   'Profil',
+    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    // ),
   ];
 
   void _onItemTapped(int index) {

@@ -61,6 +61,7 @@ class _MainState extends State<Main> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 80,
+        automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(top: 35.0, left: 20.0),
           child: RichText(
@@ -198,10 +199,9 @@ class _MainState extends State<Main> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Jumlah Pasien",
+                              "Jumlah Pasien (Hari ini)",
                               style: GoogleFonts.albertSans(
-                                fontSize: 12, // Smaller font size
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
                                 color: Colors.white,
                               ),
                             ),
@@ -209,8 +209,8 @@ class _MainState extends State<Main> {
                             Text(
                               "10 Orang",
                               style: GoogleFonts.albertSans(
-                                fontSize: 20, // Larger font size
-                                fontWeight: FontWeight.bold, // Bold font weight
+                                fontSize: 20, 
+                                fontWeight: FontWeight.bold, 
                                 color: Colors.white,
                               ),
                             ),
@@ -293,7 +293,7 @@ class _MainState extends State<Main> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(
-                                    30), // Half of width and height to make it a circle
+                                    30),
                               ),
                               child: Center(
                                 child: IconButton(
