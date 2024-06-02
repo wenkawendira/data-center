@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:google_fonts/google_fonts.dart';
 import '../components/navbar.dart'; 
 import '../components/textinputfield.dart'; 
 import '../components/pagebutton.dart'; 
@@ -44,11 +43,30 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
-  final TextEditingController _dobController = TextEditingController();
   final TextEditingController _nikController = TextEditingController();
   final TextEditingController _bpjsController = TextEditingController();
   final TextEditingController _satuSehatController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
+  DateTime? _selectedDate; // Variable to store selected date
+
+  // Function to show date picker and update selected date
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        // Update the text in your TextField accordingly
+        _dobController.text = '${picked.day}/${picked.month}/${picked.year}';
+      });
+    }
+  }
+
+  final TextEditingController _dobController = TextEditingController(); // Controller for Date of Birth
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +112,17 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
           Row(
             children: [
               Expanded(
-                child: TextInputField(
-                  hintText: 'Tanggal Lahir',
+                child: TextFormField(
                   controller: _dobController,
+                  readOnly: true,
+                  onTap: () => _selectDate(context),
+                  decoration: InputDecoration(
+                    hintText: 'Tanggal Lahir',
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      onPressed: () => _selectDate(context),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(width: 16),
@@ -135,4 +161,5 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
     );
   }
 }
+
 
