@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-//import 'package:google_fonts/google_fonts.dart';
 import '../components/navbar.dart';
 import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
-
 
 class Editprofile extends StatelessWidget {
   @override
@@ -97,9 +95,17 @@ class __EditprofileScreenState extends State<_EditprofileScreen> {
           Row(
             children: [
               Expanded(
-                child: TextInputField(
-                  hintText: 'Tanggal Lahir',
+                child: TextFormField(
                   controller: _dobController,
+                  readOnly: true,
+                  onTap: () => _selectDate(context),
+                  decoration: InputDecoration(
+                    hintText: 'Tanggal Lahir',
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      onPressed: () => _selectDate(context),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(width: 16),
@@ -147,5 +153,18 @@ class __EditprofileScreenState extends State<_EditprofileScreen> {
       ),
     );
   }
-}
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != _dobController.text) {
+      setState(() {
+        _dobController.text = "${picked.day}/${picked.month}/${picked.year}";
+      });
+    }
+  }
+}
