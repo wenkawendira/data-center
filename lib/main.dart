@@ -1,5 +1,5 @@
-import 'package:ehr_mobile/view/screens/LoginPage.dart';
 import 'package:flutter/material.dart';
+import 'package:ehr_mobile/view/screens/TambahStatus.dart'; // Ensure the import path is correct
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'REKMED',
       debugShowCheckedModeBanner: false,
-      home: LoginPage()
+      home: TambahStatus(), // Set TambahStatus as the home screen
     );
   }
 }
