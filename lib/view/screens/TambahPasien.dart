@@ -1,35 +1,28 @@
+import 'package:ehr_mobile/view/screens/DaftarPemeriksaan.dart';
 import 'package:flutter/material.dart';
-import '../components/navbar.dart'; 
-import '../components/textinputfield.dart'; 
-import '../components/pagebutton.dart'; 
+import '../components/navbar.dart';
+import '../components/textinputfield.dart';
+import '../components/pagebutton.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
 class TambahPasien extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Tambah Pasien'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Main()),
-              );
-            },
-          ),
-        ),
-        body: _TambahPasienScreen(),
-        bottomNavigationBar: Navbar(
-          onTap: (index) {
-            // Handle navigation index change
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tambah Pasien'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => Main()),
+            );
           },
-          currentIndex: 0, // Set initial index
         ),
       ),
+      body: _TambahPasienScreen(),
     );
   }
 }
@@ -66,7 +59,8 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
     }
   }
 
-  final TextEditingController _dobController = TextEditingController(); // Controller for Date of Birth
+  final TextEditingController _dobController =
+      TextEditingController(); // Controller for Date of Birth
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +75,16 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
                   width: 150,
                   height: 150,
                   color: AppColor.kOffButtonColor,
-                  child: Icon(Icons.person, size: 100, color: AppColor.kOffTextColor),
+                  child: Icon(Icons.person,
+                      size: 100, color: AppColor.kOffTextColor),
                 ),
                 SizedBox(height: 8),
                 TextButton(
                   onPressed: () {
                     // Handle change photo action
                   },
-                  child: Text('Ganti Foto', style: TextStyle(color: AppColor.kOffTextColor)),
+                  child: Text('Ganti Foto',
+                      style: TextStyle(color: AppColor.kOffTextColor)),
                 ),
               ],
             ),
@@ -152,7 +148,10 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
           SizedBox(height: 16),
           PageButton(
             onTap: () {
-              // Handle save action
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DaftarPemeriksaan()),
+              );
             },
             text: 'Simpan',
           ),
@@ -161,4 +160,3 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
     );
   }
 }
-

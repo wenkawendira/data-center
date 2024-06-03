@@ -1,13 +1,6 @@
-import 'package:ehr_mobile/view/screens/DaftarPemeriksaan.dart';
-import 'package:ehr_mobile/view/screens/EditPasien.dart';
-import 'package:ehr_mobile/view/screens/EditProfile.dart';
 import 'package:ehr_mobile/view/screens/LoginPage.dart';
-import 'package:ehr_mobile/view/screens/ProfilePerawat.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
-import 'package:ehr_mobile/view/screens/pemeriksaan.dart';
 import 'package:flutter/material.dart';
-import 'package:ehr_mobile/view/screens/TambahPasien.dart';
-import 'package:ehr_mobile/view/screens/LoginPage.dart';
 import 'package:ehr_mobile/view/screens/TambahStatus.dart';
 
 void main() {
@@ -22,10 +15,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'REKMED',
       debugShowCheckedModeBanner: false,
-      home: Pemeriksaan()
+      home: const LoginPage(),
       routes: {
-        '/login': (context) => LoginPage(),
+        '/login': (context) => const LoginPage(),
         '/tambahStatus': (context) => TambahStatus(),
+        '/main': (context) => const Main()
       },
     );
   }

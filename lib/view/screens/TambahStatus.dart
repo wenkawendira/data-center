@@ -1,35 +1,28 @@
+import 'package:ehr_mobile/view/screens/pemeriksaan.dart';
 import 'package:flutter/material.dart';
-import '../components/navbar.dart'; 
-import '../components/textinputfield.dart'; 
-import '../components/pagebutton.dart'; 
+import '../components/navbar.dart';
+import '../components/textinputfield.dart';
+import '../components/pagebutton.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
 class TambahStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Tambah Status'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Main()),
-              );
-            },
-          ),
-        ),
-        body: _TambahStatusScreen(),
-        bottomNavigationBar: Navbar(
-          onTap: (index) {
-            // Handle navigation index change
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tambah Status'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => Main()),
+            );
           },
-          currentIndex: 0, // Set initial index
         ),
       ),
+      body: _TambahStatusScreen(),
     );
   }
 }
@@ -40,8 +33,10 @@ class _TambahStatusScreen extends StatefulWidget {
 }
 
 class __TambahStatusScreenState extends State<_TambahStatusScreen> {
-  final TextEditingController _tanggalPemeriksaanController = TextEditingController();
-  final TextEditingController _waktuPemeriksaanController = TextEditingController();
+  final TextEditingController _tanggalPemeriksaanController =
+      TextEditingController();
+  final TextEditingController _waktuPemeriksaanController =
+      TextEditingController();
   final TextEditingController _namaDokterController = TextEditingController();
   final TextEditingController _beratBadanController = TextEditingController();
   final TextEditingController _tinggiBadanController = TextEditingController();
@@ -50,16 +45,21 @@ class __TambahStatusScreenState extends State<_TambahStatusScreen> {
   final TextEditingController _keluhanController = TextEditingController();
   final TextEditingController _keteranganController = TextEditingController();
   final TextEditingController _obatController = TextEditingController();
-  final TextEditingController _jadwalKunjunganLanjutanController = TextEditingController();
+  final TextEditingController _jadwalKunjunganLanjutanController =
+      TextEditingController();
   DateTime? _selectedDate; // Variable to store selected date
   TimeOfDay? _selectedTime; // Variable to store selected time
-  DateTime? _selectedJadwalKunjunganLanjutanDate; // Variable to store selected date for Jadwal Kunjungan Lanjutan
+  DateTime?
+      _selectedJadwalKunjunganLanjutanDate; // Variable to store selected date for Jadwal Kunjungan Lanjutan
 
   // Function to show date picker and update selected date
-  Future<void> _selectDate(BuildContext context, TextEditingController controller, bool isJadwalKunjunganLanjutan) async {
+  Future<void> _selectDate(BuildContext context,
+      TextEditingController controller, bool isJadwalKunjunganLanjutan) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: isJadwalKunjunganLanjutan ? _selectedJadwalKunjunganLanjutanDate ?? DateTime.now() : _selectedDate ?? DateTime.now(),
+      initialDate: isJadwalKunjunganLanjutan
+          ? _selectedJadwalKunjunganLanjutanDate ?? DateTime.now()
+          : _selectedDate ?? DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
@@ -103,12 +103,14 @@ class __TambahStatusScreenState extends State<_TambahStatusScreen> {
                 child: TextFormField(
                   controller: _tanggalPemeriksaanController,
                   readOnly: true,
-                  onTap: () => _selectDate(context, _tanggalPemeriksaanController, false),
+                  onTap: () => _selectDate(
+                      context, _tanggalPemeriksaanController, false),
                   decoration: InputDecoration(
                     hintText: 'Tanggal Pemeriksaan',
                     suffixIcon: IconButton(
                       icon: Icon(Icons.calendar_today),
-                      onPressed: () => _selectDate(context, _tanggalPemeriksaanController, false),
+                      onPressed: () => _selectDate(
+                          context, _tanggalPemeriksaanController, false),
                     ),
                   ),
                 ),
@@ -174,19 +176,24 @@ class __TambahStatusScreenState extends State<_TambahStatusScreen> {
           TextFormField(
             controller: _jadwalKunjunganLanjutanController,
             readOnly: true,
-            onTap: () => _selectDate(context, _jadwalKunjunganLanjutanController, true),
+            onTap: () =>
+                _selectDate(context, _jadwalKunjunganLanjutanController, true),
             decoration: InputDecoration(
               hintText: 'Jadwal Kunjungan Lanjutan',
               suffixIcon: IconButton(
                 icon: Icon(Icons.calendar_today),
-                onPressed: () => _selectDate(context, _jadwalKunjunganLanjutanController, true),
+                onPressed: () => _selectDate(
+                    context, _jadwalKunjunganLanjutanController, true),
               ),
             ),
           ),
           SizedBox(height: 16),
           PageButton(
             onTap: () {
-              // Handle save action
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Pemeriksaan()),
+              );
             },
             text: 'Simpan',
           ),

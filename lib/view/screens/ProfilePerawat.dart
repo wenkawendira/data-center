@@ -1,3 +1,5 @@
+import 'package:ehr_mobile/view/screens/EditProfile.dart';
+import 'package:ehr_mobile/view/screens/ResetPass.dart';
 import 'package:flutter/material.dart';
 import '../components/navbar.dart';
 import 'package:ehr_mobile/model/constraints.dart';
@@ -8,19 +10,11 @@ class Profileperawat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Profil Perawat'),
         backgroundColor: AppColor.kBackgroundColor,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-           Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Main()),
-              );
-          },
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -91,7 +85,14 @@ class Profileperawat extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Icon(Icons.edit, color: AppColor.kTextColor),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Editprofile();
+                      }));
+                    },
+                    icon: Icon(Icons.edit, color: AppColor.kTextColor)),
               ],
             ),
             SizedBox(height: 8.0),
@@ -101,11 +102,16 @@ class Profileperawat extends StatelessWidget {
             ProfileDetailItem(label: 'Nomor Telepon', value: '0896xxxxxxxx'),
             ProfileDetailItem(label: 'Tanggal Lahir', value: '12/12/1999'),
             ProfileDetailItem(label: 'Nomor BPJS', value: '00000101010101'),
-            ProfileDetailItem(label: 'Email', value: 'jessieyow@rs.pantirapih.com'),
+            ProfileDetailItem(
+                label: 'Email', value: 'jessieyow@rs.pantirapih.com'),
             ProfileDetailItem(label: 'ID Satu Sehat', value: '00000101010101'),
             Spacer(),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ResetPasswordPage();
+                }));
+              },
               style: ElevatedButton.styleFrom(
                 side: BorderSide(color: Colors.blue),
                 shape: RoundedRectangleBorder(
@@ -123,12 +129,6 @@ class Profileperawat extends StatelessWidget {
             SizedBox(height: 16.0),
           ],
         ),
-      ),
-      bottomNavigationBar: Navbar(
-        onTap: (index) {
-          // Handle navigation index change
-        },
-        currentIndex: 2, // Assuming 'Profil' is the selected tab
       ),
     );
   }

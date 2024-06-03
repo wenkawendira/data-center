@@ -8,28 +8,20 @@ import 'package:ehr_mobile/view/screens/main.dart';
 class Editprofile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Edit Profil'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Main()),
-              );
-            },
-          ),
-        ),
-        body: _EditprofileScreen(),
-        bottomNavigationBar: Navbar(
-          onTap: (index) {
-            // Handle navigation index change
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit Profil'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => Main()),
+            );
           },
-          currentIndex: 2, // Set initial index
         ),
       ),
+      body: _EditprofileScreen(),
     );
   }
 }
@@ -64,14 +56,16 @@ class __EditprofileScreenState extends State<_EditprofileScreen> {
                   width: 150,
                   height: 150,
                   color: AppColor.kOffButtonColor,
-                  child: Icon(Icons.person, size: 100, color: AppColor.kOffTextColor),
+                  child: Icon(Icons.person,
+                      size: 100, color: AppColor.kOffTextColor),
                 ),
                 SizedBox(height: 8),
                 TextButton(
                   onPressed: () {
                     // Handle change photo action
                   },
-                  child: Text('Ganti Foto', style: TextStyle(color: AppColor.kOffTextColor)),
+                  child: Text('Ganti Foto',
+                      style: TextStyle(color: AppColor.kOffTextColor)),
                 ),
               ],
             ),

@@ -1,3 +1,5 @@
+import 'package:ehr_mobile/view/screens/EditPasien.dart';
+import 'package:ehr_mobile/view/screens/TambahStatus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/navbar.dart';
@@ -28,20 +30,16 @@ class _PemeriksaanState extends State<Pemeriksaan> {
         toolbarHeight: 80,
         elevation: 0,
         backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, "/main");
+          },
+        ),
         title: Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Row(
             children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back, color: AppColor.kTextColor),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Main()),
-                  );
-                },
-              ),
-              SizedBox(width: 5), // Add spacing between arrow icon and text
               Padding(
                 padding: const EdgeInsets.only(
                     left: 35.0), // Add left padding before the text
@@ -139,7 +137,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Main()),
+                      MaterialPageRoute(builder: (context) => Editpasien()),
                     );
                   },
                 ),
@@ -163,10 +161,6 @@ class _PemeriksaanState extends State<Pemeriksaan> {
           ),
           SizedBox(height: 40),
         ],
-      ),
-      bottomNavigationBar: Navbar(
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
       ),
     );
   }
@@ -243,11 +237,13 @@ class _PemeriksaanState extends State<Pemeriksaan> {
           padding: const EdgeInsets.only(right: 0.0),
           child: ElevatedButton.icon(
             onPressed: () {
-              // Handle add status action
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return TambahStatus();
+              }));
             },
-            icon: Icon(Icons.add, size: 16, color: Colors.white),
+            icon: const Icon(Icons.add, size: 16, color: Colors.white),
             label: Text(
-              "Tambah Patient",
+              "Tambah Status",
               style: GoogleFonts.albertSans(
                 fontSize: 12,
                 color: Colors.white,

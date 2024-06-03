@@ -1,4 +1,5 @@
 import 'package:ehr_mobile/view/screens/LoginPage.dart';
+import 'package:ehr_mobile/view/screens/main.dart';
 import 'package:flutter/material.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import '../components/textinputfield.dart';
@@ -104,7 +105,10 @@ class _SignupPageState extends State<SignupPage> {
                 PageButton(
                   text: 'Daftar',
                   onTap: () {
-                    // Placeholder for sign-up functionality
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Main()),
+                    );
                   },
                 ),
                 SizedBox(height: 44),
