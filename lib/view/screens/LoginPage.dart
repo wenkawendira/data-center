@@ -1,10 +1,11 @@
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:ehr_mobile/view/screens/main.dart';
 import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../components/navbar.dart';
+// import '../components/navbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,18 +27,18 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Pemeriksaan',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      'Beranda',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      'Profil',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
+    // Text(
+    //   'Pemeriksaan',
+    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    // ),
+    // Text(
+    //   'Beranda',
+    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    // ),
+    // Text(
+    //   'Profil',
+    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    // ),
   ];
 
   void _onItemTapped(int index) {
@@ -120,7 +121,10 @@ class _LoginPageState extends State<LoginPage> {
                 PageButton(
                   text: 'Masuk',
                   onTap: () {
-                    // Placeholder for sign-in functionality
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Main()),
+                    );
                   },
                 ),
                 SizedBox(height: 44),
@@ -160,10 +164,10 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      bottomNavigationBar: Navbar(
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-      ),
+      // bottomNavigationBar: Navbar(
+      //   onTap: _onItemTapped,
+      //   currentIndex: _selectedIndex,
+      // ),
     );
   }
 }

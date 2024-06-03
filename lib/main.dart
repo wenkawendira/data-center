@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'REKMED',
       debugShowCheckedModeBanner: false,
-      home: DaftarPemeriksaan()  
+      home: Pemeriksaan()
       routes: {
         '/login': (context) => LoginPage(),
         '/tambahStatus': (context) => TambahStatus(),
