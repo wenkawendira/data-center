@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ehr_mobile/model/perawat/perawat.dart';
+import 'package:ehr_mobile/view/screens/ProfilePerawat.dart';
 import 'package:flutter/material.dart';
 import '../components/navbar.dart';
 import '../components/textinputfield.dart';
@@ -138,8 +141,26 @@ class __EditprofileScreenState extends State<_EditprofileScreen> {
           ),
           SizedBox(height: 16),
           PageButton(
-            onTap: () {
-              // Handle save action
+            onTap: () async {
+              await FirebaseFirestore.instance
+                  .collection('perawat')
+                  .add(Perawat(
+                          name: _nameController.text,
+                          id_num: int.parse(_idController.text),
+                          sex: _genderController.text,
+                          birthdate: DateTime.parse(_dobController.text),
+                          age: int.parse(_ageController.text),
+                          phone: _phoneController.text,
+                          nik: int.parse(_nikController.text),
+                          bpjs: int.parse(_bpjsController.text),
+                          satusehat: int.parse(_satuSehatController.text),
+                          email: _emailController.text,
+                          image: "")
+                      .toJson())
+                  .then((val) {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Profileperawat()));
+              });
             },
             text: 'Simpan',
           ),

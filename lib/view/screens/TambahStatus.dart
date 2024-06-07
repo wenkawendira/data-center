@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ehr_mobile/model/status/status.dart';
 import 'package:ehr_mobile/view/screens/pemeriksaan.dart';
 import 'package:flutter/material.dart';
 import '../components/navbar.dart';
@@ -189,11 +191,23 @@ class __TambahStatusScreenState extends State<_TambahStatusScreen> {
           ),
           SizedBox(height: 16),
           PageButton(
-            onTap: () {
-               Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Pemeriksaan()),
-              );
+            onTap: () async{
+              await FirebaseFirestore.instance.collection('status').add(Status(
+                statusdate: DateTime.parse(_tanggalPemeriksaanController.text),
+                time: DateTime.parse(_waktuPemeriksaanController.text), 
+                doctorname: _namaDokterController.text,
+                weight: int.parse(_beratBadanController.text),
+                height: int.parse(_tinggiBadanController.text),
+                bloodpres: int.parse(_tekananDarahController.text),
+                temp: int.parse(_temperaturController.text),
+                keluhan: _keluhanController.text,
+                keterangan: _keteranganController.text,
+                obat: _obatController.text,
+                appointment: DateTime.parse(_jadwalKunjunganLanjutanController.text)).toJson()).then((val) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => Pemeriksaan()));
+                });
             },
             text: 'Simpan',
           ),

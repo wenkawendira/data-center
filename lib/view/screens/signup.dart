@@ -1,10 +1,12 @@
-import 'package:ehr_mobile/view/screens/LoginPage.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 import 'package:flutter/material.dart';
 import 'package:ehr_mobile/model/constraints.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ehr_mobile/view/screens/database_service.dart';
+import 'package:ehr_mobile/view/screens/LoginPage.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -17,6 +19,9 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final DatabaseService _databaseService = DatabaseService();
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -24,6 +29,57 @@ class _SignupPageState extends State<SignupPage> {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  void _signUp() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Call signUpUser method from DatabaseService
+      bool signUpSuccess = await _databaseService.signUpUser(
+        nameController.text,
+        emailController.text,
+        passwordController.text,
+      );
+
+      if (signUpSuccess) {
+        // Show success message and navigate to LoginPage
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Successfully signed up!')),
+        );
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to sign up. Please try again later.')),
+        );
+      }
+    } catch (e) {
+      String errorMessage = 'An error occurred. Please try again.';
+      if (e is FirebaseAuthException) {
+        if (e.code == 'weak-password') {
+          errorMessage = 'The password provided is too weak.';
+        } else if (e.code == 'email-already-in-use') {
+          errorMessage = 'The account already exists for that email.';
+        } else if (e.code == 'invalid-email') {
+          errorMessage = 'The email address is not valid.';
+        } else {
+          errorMessage = 'Failed to create user: ${e.message}';
+        }
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -102,15 +158,12 @@ class _SignupPageState extends State<SignupPage> {
                   hintText: 'Password',
                 ),
                 SizedBox(height: 56),
-                PageButton(
-                  text: 'Daftar',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Main()),
-                    );
-                  },
-                ),
+                _isLoading
+                    ? CircularProgressIndicator()
+                    : PageButton(
+                        text: 'Daftar',
+                        onTap: _signUp,
+                      ),
                 SizedBox(height: 44),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

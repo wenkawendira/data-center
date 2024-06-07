@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ehr_mobile/model/patient/patient.dart';
 import 'package:ehr_mobile/view/screens/DaftarPemeriksaan.dart';
 import 'package:flutter/material.dart';
 import '../components/navbar.dart';
@@ -147,11 +149,26 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
           ),
           SizedBox(height: 16),
           PageButton(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => DaftarPemeriksaan()),
-              );
+            onTap: () async {
+              await FirebaseFirestore.instance
+                  .collection('patients')
+                  .add(Patient(
+                          name: _nameController.text,
+                          phone: _phoneController.text,
+                          sex: _genderController.text,
+                          birthdate: DateTime.parse(_dobController.text),
+                          age: int.parse(_ageController.text),
+                          nik: int.parse(_nikController.text),
+                          bpjs: int.parse(_bpjsController.text),
+                          satusehat: int.parse(_satuSehatController.text),
+                          image: "")
+                      .toJson())
+                  .then((val) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DaftarPemeriksaan()));
+              });
             },
             text: 'Simpan',
           ),
