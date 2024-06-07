@@ -5,7 +5,7 @@ import 'package:ehr_mobile/view/screens/main.dart';
 import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import '../components/navbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   int _selectedIndex = 0;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
@@ -26,25 +27,21 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    // Text(
-    //   'Pemeriksaan',
-    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    // ),
-    // Text(
-    //   'Beranda',
-    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    // ),
-    // Text(
-    //   'Profil',
-    //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    // ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  void _login() async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Main()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed. Please check your credentials.')),
+      );
+    }
   }
 
   @override
@@ -116,16 +113,12 @@ class _LoginPageState extends State<LoginPage> {
                 TextInputField(
                   controller: passwordController,
                   hintText: 'Password',
+                  obscureText: true,
                 ),
                 SizedBox(height: 37),
                 PageButton(
                   text: 'Masuk',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Main()),
-                    );
-                  },
+                  onTap: _login,
                 ),
                 SizedBox(height: 44),
                 Row(
