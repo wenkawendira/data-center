@@ -1,35 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ehr_mobile/model/patient/patient.dart';
+import 'package:ehr_mobile/view/screens/DaftarPemeriksaan.dart';
 import 'package:flutter/material.dart';
-import '../components/navbar.dart'; 
-import '../components/textinputfield.dart'; 
-import '../components/pagebutton.dart'; 
+import '../components/navbar.dart';
+import '../components/textinputfield.dart';
+import '../components/pagebutton.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
 class TambahPasien extends StatelessWidget {
+  const TambahPasien({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Tambah Pasien'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Main()),
-              );
-            },
-          ),
-        ),
-        body: _TambahPasienScreen(),
-        bottomNavigationBar: Navbar(
-          onTap: (index) {
-            // Handle navigation index change
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tambah Pasien'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const Main()),
+            );
           },
-          currentIndex: 0, // Set initial index
         ),
       ),
+      body: _TambahPasienScreen(),
     );
   }
 }
@@ -66,7 +63,8 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
     }
   }
 
-  final TextEditingController _dobController = TextEditingController(); // Controller for Date of Birth
+  final TextEditingController _dobController =
+      TextEditingController(); // Controller for Date of Birth
 
   @override
   Widget build(BuildContext context) {
@@ -83,32 +81,33 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
                   color: AppColor.kOffButtonColor,
                   child: Icon(Icons.person, size: 100, color: AppColor.kOffTextColor),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 TextButton(
                   onPressed: () {
                     // Handle change photo action
                   },
-                  child: Text('Ganti Foto', style: TextStyle(color: AppColor.kOffTextColor)),
+                  child:
+                      Text('Ganti Foto', style: TextStyle(color: AppColor.kOffTextColor)),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Nama Lengkap',
             controller: _nameController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Nomor Telepon',
             controller: _phoneController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Jenis Kelamin',
             controller: _genderController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -119,13 +118,13 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
                   decoration: InputDecoration(
                     hintText: 'Tanggal Lahir',
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.calendar_today),
+                      icon: const Icon(Icons.calendar_today),
                       onPressed: () => _selectDate(context),
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: TextInputField(
                   hintText: 'Umur',
@@ -134,25 +133,47 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'NIK',
             controller: _nikController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Nomor BPJS',
             controller: _bpjsController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'ID SatuSehat',
             controller: _satuSehatController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           PageButton(
-            onTap: () {
-              // Handle save action
+            onTap: () async {
+              await FirebaseFirestore.instance
+                  .collection('patients')
+                  .add(
+                    Patient(
+                            name: _nameController.text,
+                            phone: _phoneController.text,
+                            sex: _genderController.text,
+                            birthdate: DateTime.parse(_dobController.text),
+                            age: int.parse(_ageController.text),
+                            nik: int.parse(_nikController.text),
+                            bpjs: int.parse(_bpjsController.text),
+                            satusehat: int.parse(_satuSehatController.text),
+                            image: "")
+                        .toJson(),
+                  )
+                  .then((val) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DaftarPemeriksaan(),
+                  ),
+                );
+              });
             },
             text: 'Simpan',
           ),

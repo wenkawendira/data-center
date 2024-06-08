@@ -46,16 +46,16 @@ class _SignupPageState extends State<SignupPage> {
       if (signUpSuccess) {
         // Show success message and navigate to LoginPage
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Successfully signed up!')),
+          const SnackBar(content: Text('Successfully signed up!')),
         );
 
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(builder: (context) => const LoginPage()),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to sign up. Please try again later.')),
+          const SnackBar(content: Text('Failed to sign up. Please try again later.')),
         );
       }
     } catch (e) {
@@ -88,15 +88,15 @@ class _SignupPageState extends State<SignupPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 26),
+            padding: const EdgeInsets.symmetric(horizontal: 26),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   width: 320,
-                  image: AssetImage('images/rekmed.png'),
+                  image: AssetImage('assets/images/rekmed.png'),
                 ),
-                SizedBox(height: 56),
+                const SizedBox(height: 56),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -111,12 +111,12 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: nameController,
                   hintText: 'SRP001',
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -131,12 +131,12 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: emailController,
                   hintText: 'johndoe@gmail.com',
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -151,20 +151,20 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: passwordController,
                   hintText: 'Password',
-                  obscureText: true, // Hide password input
+                  isObscured: true,
                 ),
-                SizedBox(height: 56),
+                const SizedBox(height: 56),
                 _isLoading
-                    ? CircularProgressIndicator()
+                    ? const CircularProgressIndicator()
                     : PageButton(
                         text: 'Daftar',
                         onTap: _signUp,
                       ),
-                SizedBox(height: 44),
+                const SizedBox(height: 44),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -181,7 +181,7 @@ class _SignupPageState extends State<SignupPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(builder: (context) => const LoginPage()),
                         );
                       },
                       child: Text(

@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,9 +28,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -40,49 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA6NvHe3xBykLnQ0xG3_7M8s_BTEGoxbgI',
-    appId: '1:708613117421:web:0babf9e9a4c74affb543e4',
-    messagingSenderId: '708613117421',
-    projectId: 'datasync-63fc7',
-    authDomain: 'datasync-63fc7.firebaseapp.com',
-    storageBucket: 'datasync-63fc7.appspot.com',
-    measurementId: 'G-GNSZXH7C72',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCEPwuxe24_H1SrTt5udoeSIJkTXtXjpCs',
-    appId: '1:708613117421:android:acffa7459fdd6435b543e4',
-    messagingSenderId: '708613117421',
-    projectId: 'datasync-63fc7',
-    storageBucket: 'datasync-63fc7.appspot.com',
+    apiKey: 'AIzaSyCap88wzcrw2mKOFGlHzkwK9heUeSRLkAE',
+    appId: '1:876840824438:android:7e121cbd612c3b02123957',
+    messagingSenderId: '876840824438',
+    projectId: 'rekmed-datcen',
+    storageBucket: 'rekmed-datcen.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB2mNzCQmWVcszq7V9lEub4A54BJnvchjU',
-    appId: '1:708613117421:ios:1acb1743f264ed67b543e4',
-    messagingSenderId: '708613117421',
-    projectId: 'datasync-63fc7',
-    storageBucket: 'datasync-63fc7.appspot.com',
+    apiKey: 'AIzaSyAYi1RY04uTOR2IpQf9g4jUjutj-HEJpJY',
+    appId: '1:876840824438:ios:495497f4787a25c1123957',
+    messagingSenderId: '876840824438',
+    projectId: 'rekmed-datcen',
+    storageBucket: 'rekmed-datcen.appspot.com',
     iosBundleId: 'com.example.ehrMobile',
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyB2mNzCQmWVcszq7V9lEub4A54BJnvchjU',
-    appId: '1:708613117421:ios:1acb1743f264ed67b543e4',
-    messagingSenderId: '708613117421',
-    projectId: 'datasync-63fc7',
-    storageBucket: 'datasync-63fc7.appspot.com',
-    iosBundleId: 'com.example.ehrMobile',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyA6NvHe3xBykLnQ0xG3_7M8s_BTEGoxbgI',
-    appId: '1:708613117421:web:ba292bf71e75200fb543e4',
-    messagingSenderId: '708613117421',
-    projectId: 'datasync-63fc7',
-    authDomain: 'datasync-63fc7.firebaseapp.com',
-    storageBucket: 'datasync-63fc7.appspot.com',
-    measurementId: 'G-10GP1PMSTH',
-  );
 }

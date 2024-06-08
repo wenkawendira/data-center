@@ -7,15 +7,18 @@ class TextInputField extends StatelessWidget {
     super.key,
     required this.hintText,
     required this.controller,
+    this.isObscured = false,
   });
 
   final String hintText;
   final TextEditingController controller;
+  final bool isObscured;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      obscureText: isObscured,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: GoogleFonts.albertSans(
@@ -27,7 +30,7 @@ class TextInputField extends StatelessWidget {
         filled: true,
         fillColor: AppColor.kOffButtonColor,
         //border around the textfield
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(

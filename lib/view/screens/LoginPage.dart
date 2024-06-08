@@ -1,7 +1,6 @@
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:ehr_mobile/view/screens/main.dart';
 import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +16,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  int _selectedIndex = 0;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
@@ -29,17 +27,13 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Main()),
-      );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed. Please check your credentials.')),
+        const SnackBar(content: Text('Login failed. Please check your credentials.')),
       );
     }
   }
@@ -51,15 +45,15 @@ class _LoginPageState extends State<LoginPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 26),
+            padding: const EdgeInsets.symmetric(horizontal: 26),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   width: 320,
-                  image: AssetImage('images/rekmed.png'),
+                  image: AssetImage('assets/images/rekmed.png'),
                 ),
-                SizedBox(height: 56),
+                const SizedBox(height: 56),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.center,
@@ -74,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -89,12 +83,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: emailController,
                   hintText: 'Email',
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -109,18 +103,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: passwordController,
                   hintText: 'Password',
-                  obscureText: true,
+                  isObscured: true,
                 ),
-                SizedBox(height: 37),
+                const SizedBox(height: 37),
                 PageButton(
                   text: 'Masuk',
                   onTap: _login,
                 ),
-                SizedBox(height: 44),
+                const SizedBox(height: 44),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -137,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignupPage()),
+                          MaterialPageRoute(builder: (context) => const SignupPage()),
                         );
                       },
                       child: Text(

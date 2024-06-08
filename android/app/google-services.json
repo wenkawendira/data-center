@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "876840824438",
+    "project_id": "rekmed-datcen",
+    "storage_bucket": "rekmed-datcen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876840824438:android:7e121cbd612c3b02123957",
+        "android_client_info": {
+          "package_name": "com.example.ehr_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCap88wzcrw2mKOFGlHzkwK9heUeSRLkAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

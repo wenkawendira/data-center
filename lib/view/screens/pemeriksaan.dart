@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../components/navbar.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
 class Pemeriksaan extends StatefulWidget {
-  const Pemeriksaan({Key? key}) : super(key: key);
+  const Pemeriksaan({super.key});
 
   @override
   State<Pemeriksaan> createState() => _PemeriksaanState();
 }
 
 class _PemeriksaanState extends State<Pemeriksaan> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,47 +19,27 @@ class _PemeriksaanState extends State<Pemeriksaan> {
         toolbarHeight: 80,
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back, color: AppColor.kTextColor),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Main()),
-                  );
-                },
-              ),
-              SizedBox(width: 5), // Add spacing between arrow icon and text
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 35.0), // Add left padding before the text
-                child: Text(
-                  "Pemeriksaan",
-                  style: GoogleFonts.albertSans(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+        title: Text(
+          "Pemeriksaan",
+          style: GoogleFonts.albertSans(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
       ),
       body: ListView(
         children: [
-          SizedBox(height: 2), // Add spacing between app bar and container
+          const SizedBox(height: 2), // Add spacing between app bar and container
           Center(
             child: Card(
               color: AppColor.kButtonColor,
-              margin: EdgeInsets.symmetric(horizontal: 35.0),
+              margin: const EdgeInsets.symmetric(horizontal: 35.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Container(
-                padding: EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -80,7 +51,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    SizedBox(width: 20.0),
+                    const SizedBox(width: 20.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +65,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 7.0),
+                        const SizedBox(height: 7.0),
                         Text(
                           "Gender",
                           style: GoogleFonts.albertSans(
@@ -102,7 +73,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                             fontSize: 14,
                           ),
                         ),
-                        SizedBox(height: 3.0),
+                        const SizedBox(height: 3.0),
                         Text(
                           "Age",
                           style: GoogleFonts.albertSans(
@@ -117,7 +88,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 35.0),
             child: Row(
@@ -129,7 +100,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 IconButton(
                   icon: Icon(
                     Icons.edit_rounded,
@@ -139,34 +110,30 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Main()),
+                      MaterialPageRoute(builder: (context) => const Main()),
                     );
                   },
                 ),
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 0.0),
             child: _buildPatientInfoSection(),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 35.0),
             child: _buildStatusSection(),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 35.0),
             child: _buildStatusCard(),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
         ],
-      ),
-      bottomNavigationBar: Navbar(
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
       ),
     );
   }
@@ -190,7 +157,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                 ],
               ),
             ),
-            SizedBox(width: 1),
+            const SizedBox(width: 1),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -245,7 +212,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             onPressed: () {
               // Handle add status action
             },
-            icon: Icon(Icons.add, size: 16, color: Colors.white),
+            icon: const Icon(Icons.add, size: 16, color: Colors.white),
             label: Text(
               "Tambah Patient",
               style: GoogleFonts.albertSans(
@@ -255,7 +222,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             ),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColor.kButtonColor,
-              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -284,13 +251,12 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildStatusHeader(),
-              SizedBox(height: 10),
-              _buildStatusDetail(
-                  "Keluhan", "Tiba-tiba tensi naik dan sakit kepala"),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
+              _buildStatusDetail("Keluhan", "Tiba-tiba tensi naik dan sakit kepala"),
+              const SizedBox(height: 10),
               _buildStatusDetail("Keterangan",
                   "Tadi sudah diberikan infus, tolong dicek kembali beberapa saat lagi"),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               _buildStatusFooter(),
             ],
           ),
@@ -320,7 +286,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
           ],
         ),
         Container(
-          padding: EdgeInsets.all(0.5),
+          padding: const EdgeInsets.all(0.5),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -329,7 +295,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             ),
           ),
           child: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_forward_ios_outlined,
               color: Colors.black,
               size: 20,
@@ -354,9 +320,9 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           width: double.infinity,
           decoration: BoxDecoration(
             color: AppColor.kOffButtonColor,
@@ -392,9 +358,9 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           width: 120,
           decoration: BoxDecoration(
             color: AppColor.kOffButtonColor,

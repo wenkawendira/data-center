@@ -1,40 +1,40 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ehr_mobile/model/patient/patient.dart';
+import 'package:ehr_mobile/view/screens/DaftarPemeriksaan.dart';
 import 'package:flutter/material.dart';
-import '../components/navbar.dart'; 
-import '../components/textinputfield.dart'; 
-import '../components/pagebutton.dart'; 
+import '../components/textinputfield.dart';
+import '../components/pagebutton.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
 class Editpasien extends StatelessWidget {
+  final String patientID;
+  const Editpasien({super.key, required this.patientID});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Edit Pasien'),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Main()),
-              );
-            },
-          ),
-        ),
-        body: _EditpasienScreen(),
-        bottomNavigationBar: Navbar(
-          onTap: (index) {
-            // Handle navigation index change
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Edit Pasien'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const Main()),
+            );
           },
-          currentIndex: 0, // Set initial index
         ),
       ),
+      body: _EditpasienScreen(patientID: patientID,),
     );
   }
 }
 
 class _EditpasienScreen extends StatefulWidget {
+  final String patientID;
+  const _EditpasienScreen({required this.patientID});
+
   @override
   __EditpasienScreenState createState() => __EditpasienScreenState();
 }
@@ -66,7 +66,8 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
     }
   }
 
-  final TextEditingController _dobController = TextEditingController(); // Controller for Date of Birth
+  final TextEditingController _dobController =
+      TextEditingController(); // Controller for Date of Birth
 
   @override
   Widget build(BuildContext context) {
@@ -83,32 +84,33 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
                   color: AppColor.kOffButtonColor,
                   child: Icon(Icons.person, size: 100, color: AppColor.kOffTextColor),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 TextButton(
                   onPressed: () {
                     // Handle change photo action
                   },
-                  child: Text('Ganti Foto', style: TextStyle(color: AppColor.kOffTextColor)),
+                  child:
+                      Text('Ganti Foto', style: TextStyle(color: AppColor.kOffTextColor)),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Nama Lengkap',
             controller: _nameController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Nomor Telepon',
             controller: _phoneController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Jenis Kelamin',
             controller: _genderController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Row(
             children: [
               Expanded(
@@ -119,13 +121,13 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
                   decoration: InputDecoration(
                     hintText: 'Tanggal Lahir',
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.calendar_today),
+                      icon: const Icon(Icons.calendar_today),
                       onPressed: () => _selectDate(context),
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: TextInputField(
                   hintText: 'Umur',
@@ -134,25 +136,49 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'NIK',
             controller: _nikController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'Nomor BPJS',
             controller: _bpjsController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextInputField(
             hintText: 'ID SatuSehat',
             controller: _satuSehatController,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           PageButton(
-            onTap: () {
+            onTap: () async {
               // Handle save action
+              await FirebaseFirestore.instance
+                  .collection('patients')
+                  .doc(widget.patientID)
+                  .update(
+                    Patient(
+                            name: _nameController.text,
+                            phone: _phoneController.text,
+                            sex: _genderController.text,
+                            birthdate: DateTime.parse(_dobController.text),
+                            age: int.parse(_ageController.text),
+                            nik: int.parse(_nikController.text),
+                            bpjs: int.parse(_bpjsController.text),
+                            satusehat: int.parse(_satuSehatController.text),
+                            image: "")
+                        .toJson(),
+                  )
+                  .then((val) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DaftarPemeriksaan(),
+                  ),
+                );
+              });
             },
             text: 'Simpan',
           ),
@@ -161,5 +187,3 @@ class __EditpasienScreenState extends State<_EditpasienScreen> {
     );
   }
 }
-
-

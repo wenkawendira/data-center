@@ -5,7 +5,7 @@ import '../components/textinputfield.dart';
 import 'LoginPage.dart';
 
 class ResetPasswordPage extends StatefulWidget {
-  const ResetPasswordPage({Key? key});
+  const ResetPasswordPage({super.key});
 
   @override
   State<ResetPasswordPage> createState() => _ResetPasswordPageState();
@@ -29,15 +29,15 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 26),
+            padding: const EdgeInsets.symmetric(horizontal: 26),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
+                const Image(
                   width: 320,
-                  image: AssetImage('images/rekmed.png'),
+                  image: AssetImage('assets/images/rekmed.png'),
                 ),
-                SizedBox(height: 56),
+                const SizedBox(height: 56),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -52,12 +52,12 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: newPasswordController,
                   hintText: 'Masukkan password baru',
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   width: double.infinity,
                   alignment: Alignment.centerLeft,
@@ -72,13 +72,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 TextInputField(
                   controller: confirmNewPasswordController,
                   hintText: 'Konfirmasi password baru',
                 ),
-                SizedBox(height: 56),
-                SizedBox(height: 44),
+                const SizedBox(height: 56),
+                const SizedBox(height: 44),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -95,7 +95,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(builder: (context) => const LoginPage()),
                         );
                       },
                       child: Text(
@@ -138,7 +138,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     // Navigate to login page after successful password reset
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
+      MaterialPageRoute(builder: (context) => const LoginPage()),
     );
   }
 
@@ -147,14 +147,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Error'),
+          title: const Text('Error'),
           content: Text(message),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );
