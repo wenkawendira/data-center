@@ -1,4 +1,4 @@
-import 'package:ehr_mobile/model/perawat/perawat.dart';
+// import 'package:ehr_mobile/model/perawat/perawat.dart';
 import 'package:ehr_mobile/view/screens/EditProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +6,9 @@ import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
 class Profileperawat extends StatelessWidget {
-  final Perawat perawat;
-  const Profileperawat({super.key, required this.perawat});
+  // final Perawat perawat;
+  // const Profileperawat({super.key, required this.perawat});
+  const Profileperawat({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -109,19 +110,19 @@ class Profileperawat extends StatelessWidget {
             const SizedBox(height: 8.0),
             const Divider(color: Colors.black),
             const SizedBox(height: 8.0),
-            ProfileDetailItem(label: 'NIK', value: widget.perawat.nik),
+            ProfileDetailItem(label: 'NIK', value: "317392361892"),
             ProfileDetailItem(
-                label: 'Nomor Telepon', value: widget.perawat.phone),
+                label: 'Nomor Telepon', value: "08964352123"),
             ProfileDetailItem(
-                label: 'Tanggal Lahir', value: widget.perawat.birthdate),
+                label: 'Tanggal Lahir', value: "12/08/2000"),
             ProfileDetailItem(
-                label: 'Nomor BPJS', value: widget.perawat.bpjs),
+                label: 'Nomor BPJS', value: "1235218"),
             ProfileDetailItem(
               label: 'Email',
               value: FirebaseAuth.instance.currentUser?.email ?? "",
             ),
             ProfileDetailItem(
-                label: 'ID Satu Sehat', value: widget.perawat.satusehat),
+                label: 'ID Satu Sehat', value: "4532"),
             const Spacer(),
             ElevatedButton(
               onPressed: () {

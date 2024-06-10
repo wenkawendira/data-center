@@ -163,7 +163,7 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
                             age: int.parse(_ageController.text),
                             nik: int.parse(_nikController.text),
                             bpjs: int.parse(_bpjsController.text),
-                            satusehat: int.parse(_satuSehatController.text),
+                            satusehat:int.parse(_satuSehatController.text),
                             image: "")
                         .toJson(),
                   )

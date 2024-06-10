@@ -155,9 +155,9 @@ class _PemeriksaanPageState extends State<PemeriksaanPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildInfoRow("NIK", widget.patient.nik as String),
-                  _buildInfoRow("Tanggal Lahir", widget.patient.birthdate as String),
-                  _buildInfoRow("ID Satu Sehat", widget.patient.satusehat as String),
+                  _buildInfoRow("NIK", widget.patient.nik.toString()),
+                  _buildInfoRow("Tanggal Lahir", widget.patient.birthdate.toString()),
+                  _buildInfoRow("ID Satu Sehat", widget.patient.satusehat.toString()),
                 ],
               ),
             ),
@@ -166,8 +166,8 @@ class _PemeriksaanPageState extends State<PemeriksaanPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildInfoRow("Nomor Telepon", widget.patient.phone),
-                  _buildInfoRow("Nomor BPJS", widget.patient.bpjs as String),
+                  _buildInfoRow("Nomor Telepon", widget.patient.phone.toString()),
+                  _buildInfoRow("Nomor BPJS", widget.patient.bpjs.toString()),
                 ],
               ),
             ),
@@ -218,7 +218,7 @@ class _PemeriksaanPageState extends State<PemeriksaanPage> {
             },
             icon: const Icon(Icons.add, size: 16, color: Colors.white),
             label: Text(
-              "Tambah Patient",
+              "Tambah Status",
               style: GoogleFonts.albertSans(
                 fontSize: 12,
                 color: Colors.white,
