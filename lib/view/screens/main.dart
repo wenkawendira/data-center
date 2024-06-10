@@ -1,3 +1,4 @@
+import 'package:ehr_mobile/model/perawat/perawat.dart';
 import 'package:ehr_mobile/view/screens/DaftarPemeriksaan.dart';
 import 'package:ehr_mobile/view/screens/ProfilePerawat.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -72,7 +73,8 @@ class _MainState extends State<Main> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 35.0, left: 20.0),
+                            padding:
+                                const EdgeInsets.only(top: 35.0, left: 20.0),
                             child: RichText(
                               text: TextSpan(
                                 text: "Hi, Perawat ",
@@ -80,7 +82,8 @@ class _MainState extends State<Main> {
                                     fontSize: 20, color: AppColor.kTextColor),
                                 children: [
                                   TextSpan(
-                                    text: FirebaseAuth.instance.currentUser!.displayName,
+                                    text: FirebaseAuth
+                                        .instance.currentUser!.displayName,
                                     style: GoogleFonts.albertSans(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -93,7 +96,8 @@ class _MainState extends State<Main> {
                           GestureDetector(
                             onTap: () {},
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 35.0, right: 35.0),
+                              padding:
+                                  const EdgeInsets.only(top: 35.0, right: 35.0),
                               child: Icon(
                                 Icons.supervised_user_circle_rounded,
                                 color: AppColor.kOffButtonColor,
@@ -116,7 +120,8 @@ class _MainState extends State<Main> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(24.0).copyWith(bottom: 0.0),
+                            padding: const EdgeInsets.all(24.0)
+                                .copyWith(bottom: 0.0),
                             child: Column(
                               children: [
                                 Container(
@@ -127,7 +132,8 @@ class _MainState extends State<Main> {
                                   ),
                                   padding: const EdgeInsets.all(16.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Align(
                                         alignment: Alignment.centerRight,
@@ -136,11 +142,13 @@ class _MainState extends State<Main> {
                                           height: 30,
                                           decoration: BoxDecoration(
                                             color: Colors.white,
-                                            borderRadius: BorderRadius.circular(8),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 0,
-                                              horizontal: 5.0), // Adjusted padding
+                                              horizontal:
+                                                  5.0), // Adjusted padding
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -152,34 +160,42 @@ class _MainState extends State<Main> {
                                                 child: Text(
                                                   _selectedMonthYear,
                                                   style: GoogleFonts.albertSans(
-                                                    fontSize: 12, // Smaller font size
+                                                    fontSize:
+                                                        12, // Smaller font size
                                                     fontWeight: FontWeight.bold,
                                                   ),
-                                                  overflow: TextOverflow.ellipsis,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                 ),
                                               ),
                                               DropdownButtonHideUnderline(
                                                 child: DropdownButton<String>(
-                                                  icon: const Icon(Icons.arrow_drop_down,
+                                                  icon: const Icon(
+                                                      Icons.arrow_drop_down,
                                                       size: 16), // Smaller icon
                                                   value: _selectedMonthYear,
                                                   items: _monthYearOptions
                                                       .map((String option) {
-                                                    return DropdownMenuItem<String>(
+                                                    return DropdownMenuItem<
+                                                        String>(
                                                       value: option,
                                                       child: Text(
                                                         option,
-                                                        style: GoogleFonts.albertSans(
+                                                        style: GoogleFonts
+                                                            .albertSans(
                                                           fontSize:
                                                               12, // Smaller font size
-                                                          fontWeight: FontWeight.bold,
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                         ),
                                                       ),
                                                     );
                                                   }).toList(),
-                                                  onChanged: (String? newValue) {
+                                                  onChanged:
+                                                      (String? newValue) {
                                                     setState(() {
-                                                      _selectedMonthYear = newValue!;
+                                                      _selectedMonthYear =
+                                                          newValue!;
                                                     });
                                                   },
                                                 ),
@@ -195,11 +211,12 @@ class _MainState extends State<Main> {
                                             bottom: 16.0, top: 16.0),
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.circular(8),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
                                         ),
                                         padding: const EdgeInsets.all(16.0),
                                         child: Text(
-                                          "White box content here",
+                                          "",
                                           style: GoogleFonts.albertSans(
                                             fontSize: 16,
                                             fontWeight: FontWeight.normal,
@@ -209,7 +226,8 @@ class _MainState extends State<Main> {
                                       SizedBox(
                                         width: double.infinity,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               "Jumlah Pasien (Hari ini)",
@@ -237,7 +255,8 @@ class _MainState extends State<Main> {
                                 Align(
                                   alignment: Alignment.bottomLeft,
                                   child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 20.0),
+                                    padding:
+                                        const EdgeInsets.only(bottom: 20.0),
                                     child: Text(
                                       "Notifikasi",
                                       style: GoogleFonts.albertSans(
@@ -253,11 +272,13 @@ class _MainState extends State<Main> {
                                         5, // Change the itemCount according to your requirement
                                     itemBuilder: (context, index) {
                                       return Container(
-                                        margin: const EdgeInsets.only(bottom: 16.0),
+                                        margin:
+                                            const EdgeInsets.only(bottom: 16.0),
                                         padding: const EdgeInsets.all(16.0),
                                         decoration: BoxDecoration(
                                           color: AppColor.kOffButtonColor,
-                                          borderRadius: BorderRadius.circular(8.0),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
                                         child: Row(
                                           children: [
@@ -266,7 +287,8 @@ class _MainState extends State<Main> {
                                               height: 80,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
-                                                borderRadius: BorderRadius.circular(8.0),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
                                               ),
                                               // Add your image widget here
                                             ),
@@ -278,22 +300,26 @@ class _MainState extends State<Main> {
                                                 children: [
                                                   Text(
                                                     "Nama Pasien",
-                                                    style: GoogleFonts.albertSans(
+                                                    style:
+                                                        GoogleFonts.albertSans(
                                                       fontSize: 16,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.black,
                                                     ),
                                                   ),
                                                   Text(
                                                     "No. Kamar",
-                                                    style: GoogleFonts.albertSans(
+                                                    style:
+                                                        GoogleFonts.albertSans(
                                                       fontSize: 12,
                                                       color: Colors.black,
                                                     ),
                                                   ),
                                                   Text(
                                                     "Nama Dokter",
-                                                    style: GoogleFonts.albertSans(
+                                                    style:
+                                                        GoogleFonts.albertSans(
                                                       fontSize: 12,
                                                       color: Colors.black,
                                                     ),
@@ -306,7 +332,8 @@ class _MainState extends State<Main> {
                                               height: 40,
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
-                                                borderRadius: BorderRadius.circular(30),
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
                                               ),
                                               child: Center(
                                                 child: IconButton(
@@ -314,7 +341,8 @@ class _MainState extends State<Main> {
                                                     // Add your onPressed logic here
                                                   },
                                                   icon: const Icon(
-                                                    Icons.arrow_forward_ios_rounded,
+                                                    Icons
+                                                        .arrow_forward_ios_rounded,
                                                     color: Colors.black,
                                                     size: 24,
                                                   ),

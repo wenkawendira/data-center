@@ -1,3 +1,4 @@
+import 'package:ehr_mobile/model/perawat/perawat.dart';
 import 'package:ehr_mobile/view/screens/EditProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +6,12 @@ import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
 class Profileperawat extends StatelessWidget {
-  const Profileperawat({super.key});
+  final Perawat perawat;
+  const Profileperawat({super.key, required this.perawat});
 
   @override
   Widget build(BuildContext context) {
+    var widget;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profil Perawat'),
@@ -93,7 +96,8 @@ class Profileperawat extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => Editprofile(
-                          profileID: FirebaseAuth.instance.currentUser?.uid ?? "",
+                          profileID:
+                              FirebaseAuth.instance.currentUser?.uid ?? "",
                         ),
                       ),
                     );
@@ -105,15 +109,19 @@ class Profileperawat extends StatelessWidget {
             const SizedBox(height: 8.0),
             const Divider(color: Colors.black),
             const SizedBox(height: 8.0),
-            const ProfileDetailItem(label: 'NIK', value: '00000101010101'),
-            const ProfileDetailItem(label: 'Nomor Telepon', value: '0896xxxxxxxx'),
-            const ProfileDetailItem(label: 'Tanggal Lahir', value: '12/12/1999'),
-            const ProfileDetailItem(label: 'Nomor BPJS', value: '00000101010101'),
+            ProfileDetailItem(label: 'NIK', value: widget.perawat.nik),
+            ProfileDetailItem(
+                label: 'Nomor Telepon', value: widget.perawat.phone),
+            ProfileDetailItem(
+                label: 'Tanggal Lahir', value: widget.perawat.birthdate),
+            ProfileDetailItem(
+                label: 'Nomor BPJS', value: widget.perawat.bpjs),
             ProfileDetailItem(
               label: 'Email',
               value: FirebaseAuth.instance.currentUser?.email ?? "",
             ),
-            const ProfileDetailItem(label: 'ID Satu Sehat', value: '00000101010101'),
+            ProfileDetailItem(
+                label: 'ID Satu Sehat', value: widget.perawat.satusehat),
             const Spacer(),
             ElevatedButton(
               onPressed: () {
@@ -121,7 +129,8 @@ class Profileperawat extends StatelessWidget {
                     email: FirebaseAuth.instance.currentUser?.email ?? "");
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Password reset link has been sent to your email.'),
+                    content: Text(
+                        'Password reset link has been sent to your email.'),
                   ),
                 );
               },
@@ -151,7 +160,8 @@ class ProfileDetailItem extends StatelessWidget {
   final String label;
   final String value;
 
-  const ProfileDetailItem({super.key, required this.label, required this.value});
+  const ProfileDetailItem(
+      {super.key, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {

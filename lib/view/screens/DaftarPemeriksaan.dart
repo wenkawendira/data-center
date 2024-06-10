@@ -35,7 +35,10 @@ class DaftarPemeriksaan extends StatelessWidget {
           );
         },
         backgroundColor: kButtonColor,
-        child: const Icon(Icons.add, color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
@@ -44,14 +47,23 @@ class DaftarPemeriksaan extends StatelessWidget {
 
 class _DaftarPemeriksaanScreen extends StatefulWidget {
   @override
-  __DaftarPemeriksaanScreenState createState() => __DaftarPemeriksaanScreenState();
+  __DaftarPemeriksaanScreenState createState() =>
+      __DaftarPemeriksaanScreenState();
 }
 
 class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
   final TextEditingController _searchController = TextEditingController();
   final List<Map<String, String>> doctors = [
-    {"name": "Andrea Notokusumo", "gender": "Perempuan", "specialization": "Gizi, Umum"},
-    {"name": "Kyle Abii", "gender": "Laki-laki", "specialization": "Umum, Anak, THT"},
+    {
+      "name": "Andrea Notokusumo",
+      "gender": "Perempuan",
+      "specialization": "Gizi, Umum"
+    },
+    {
+      "name": "Kyle Abii",
+      "gender": "Laki-laki",
+      "specialization": "Umum, Anak, THT"
+    },
     {
       "name": "Andreas Notokusumo",
       "gender": "Laki-laki",
@@ -72,7 +84,8 @@ class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
           TextField(
             controller: _searchController,
             decoration: InputDecoration(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               focusColor: AppColor.kButtonColor,
               labelText: 'Nama Pasien, NIK, No. BPJS, ID SatuSehat',
               labelStyle: GoogleFonts.albertSans(color: AppColor.kTextColor),
@@ -136,8 +149,8 @@ class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  items:
-                      <String>['Anak', 'Gigi', 'Gizi', 'Umum', 'THT'].map((String value) {
+                  items: <String>['Anak', 'Gigi', 'Gizi', 'Umum', 'THT']
+                      .map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -171,7 +184,8 @@ class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Icon(Icons.person, color: AppColor.kBackgroundColor),
+                      child:
+                          Icon(Icons.person, color: AppColor.kBackgroundColor),
                     ),
                   ),
                   dropdownColor: AppColor.kButtonColor,
@@ -212,7 +226,7 @@ class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
           const SizedBox(height: 16),
           Expanded(
             child: FirestoreListView(
-              query: FirebaseFirestore.instance.collection('pemeriksaan'),
+              query: FirebaseFirestore.instance.collection('patients'),
               itemBuilder: (context, snap) {
                 final data = Patient.fromJson(snap.data());
 
@@ -221,12 +235,15 @@ class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Pemeriksaan(),
+                        builder: (context) => PemeriksaanPage(
+                          patient: data
+                        ),
                       ),
                     );
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 15), // Add spacing between items
+                    padding: const EdgeInsets.only(
+                        bottom: 15), // Add spacing between items
                     child: Container(
                       height: 114, // Increased height for the container
                       decoration: BoxDecoration(
@@ -242,7 +259,8 @@ class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
                               height: 82, // Increased height for the white box
                               decoration: BoxDecoration(
                                 color: AppColor.kBackgroundColor,
-                                borderRadius: BorderRadius.circular(6), // Rounded edges
+                                borderRadius:
+                                    BorderRadius.circular(6), // Rounded edges
                               ),
                             ),
                             const SizedBox(width: 16),
@@ -271,12 +289,15 @@ class __DaftarPemeriksaanScreenState extends State<_DaftarPemeriksaanScreen> {
                               ),
                             ),
                             Container(
-                              padding: const EdgeInsets.all(6), // Adjust padding as needed
+                              padding: const EdgeInsets.all(
+                                  6), // Adjust padding as needed
                               decoration: BoxDecoration(
-                                color: AppColor.kBackgroundColor, // White background color
+                                color: AppColor
+                                    .kBackgroundColor, // White background color
                                 shape: BoxShape.circle, // Circular shape
                               ),
-                              child: Icon(Icons.chevron_right, color: AppColor.kTextColor),
+                              child: Icon(Icons.chevron_right,
+                                  color: AppColor.kTextColor),
                             ),
                           ],
                         ),

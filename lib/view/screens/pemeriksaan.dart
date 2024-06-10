@@ -1,18 +1,21 @@
+import 'package:ehr_mobile/model/patient/patient.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ehr_mobile/model/constraints.dart';
 import 'package:ehr_mobile/view/screens/main.dart';
 
-class Pemeriksaan extends StatefulWidget {
-  const Pemeriksaan({super.key});
+class PemeriksaanPage extends StatefulWidget {
+  final Patient patient;
+  const PemeriksaanPage({super.key, required this.patient});
 
   @override
-  State<Pemeriksaan> createState() => _PemeriksaanState();
+  State<PemeriksaanPage> createState() => _PemeriksaanPageState();
 }
 
-class _PemeriksaanState extends State<Pemeriksaan> {
+class _PemeriksaanPageState extends State<PemeriksaanPage> {
   @override
   Widget build(BuildContext context) {
+    var widget2 = widget;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -30,7 +33,8 @@ class _PemeriksaanState extends State<Pemeriksaan> {
       ),
       body: ListView(
         children: [
-          const SizedBox(height: 2), // Add spacing between app bar and container
+          const SizedBox(
+              height: 2), // Add spacing between app bar and container
           Center(
             child: Card(
               color: AppColor.kButtonColor,
@@ -58,7 +62,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "Name",
+                          widget.patient.name,
                           style: GoogleFonts.albertSans(
                             color: Colors.white,
                             fontSize: 20,
@@ -67,7 +71,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                         ),
                         const SizedBox(height: 7.0),
                         Text(
-                          "Gender",
+                          widget.patient.sex,
                           style: GoogleFonts.albertSans(
                             color: Colors.white,
                             fontSize: 14,
@@ -75,7 +79,7 @@ class _PemeriksaanState extends State<Pemeriksaan> {
                         ),
                         const SizedBox(height: 3.0),
                         Text(
-                          "Age",
+                          widget.patient.age.toString() + " Tahun",
                           style: GoogleFonts.albertSans(
                             color: Colors.white,
                             fontSize: 14,
@@ -151,9 +155,9 @@ class _PemeriksaanState extends State<Pemeriksaan> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildInfoRow("NIK", "0000010101010101"),
-                  _buildInfoRow("Tanggal Lahir", "12/12/2000"),
-                  _buildInfoRow("ID Satu Sehat", "0000010101010101"),
+                  _buildInfoRow("NIK", widget.patient.nik as String),
+                  _buildInfoRow("Tanggal Lahir", widget.patient.birthdate as String),
+                  _buildInfoRow("ID Satu Sehat", widget.patient.satusehat as String),
                 ],
               ),
             ),
@@ -162,8 +166,8 @@ class _PemeriksaanState extends State<Pemeriksaan> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildInfoRow("Nomor Telepon", "0896xxxxxxx"),
-                  _buildInfoRow("Nomor BPJS", "0000010101010101"),
+                  _buildInfoRow("Nomor Telepon", widget.patient.phone),
+                  _buildInfoRow("Nomor BPJS", widget.patient.bpjs as String),
                 ],
               ),
             ),
@@ -222,7 +226,8 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             ),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColor.kButtonColor,
-              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -252,7 +257,8 @@ class _PemeriksaanState extends State<Pemeriksaan> {
             children: [
               _buildStatusHeader(),
               const SizedBox(height: 10),
-              _buildStatusDetail("Keluhan", "Tiba-tiba tensi naik dan sakit kepala"),
+              _buildStatusDetail(
+                  "Keluhan", "Tiba-tiba tensi naik dan sakit kepala"),
               const SizedBox(height: 10),
               _buildStatusDetail("Keterangan",
                   "Tadi sudah diberikan infus, tolong dicek kembali beberapa saat lagi"),

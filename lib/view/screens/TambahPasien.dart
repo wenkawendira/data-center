@@ -58,7 +58,7 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
       setState(() {
         _selectedDate = picked;
         // Update the text in your TextField accordingly
-        _dobController.text = '${picked.day}/${picked.month}/${picked.year}';
+        _dobController.text = picked.toString();
       });
     }
   }
