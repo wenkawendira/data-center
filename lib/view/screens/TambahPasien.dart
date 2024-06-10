@@ -151,6 +151,7 @@ class __TambahPasienScreenState extends State<_TambahPasienScreen> {
           const SizedBox(height: 16),
           PageButton(
             onTap: () async {
+              // Handle save action
               await FirebaseFirestore.instance
                   .collection('patients')
                   .add(

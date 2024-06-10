@@ -5,6 +5,8 @@ import '../components/textinputfield.dart';
 import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ehr_mobile/view/screens/main.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -112,7 +114,12 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 37),
                 PageButton(
                   text: 'Masuk',
-                  onTap: _login,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Main()),
+                    );
+                  },
                 ),
                 const SizedBox(height: 44),
                 Row(

@@ -6,6 +6,8 @@ import '../components/pagebutton.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ehr_mobile/view/screens/database_service.dart';
 import 'package:ehr_mobile/view/screens/LoginPage.dart';
+import 'package:ehr_mobile/view/screens/Main.dart';
+
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -55,7 +57,8 @@ class _SignupPageState extends State<SignupPage> {
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to sign up. Please try again later.')),
+          const SnackBar(
+              content: Text('Failed to sign up. Please try again later.')),
         );
       }
     } catch (e) {
@@ -162,7 +165,13 @@ class _SignupPageState extends State<SignupPage> {
                     ? const CircularProgressIndicator()
                     : PageButton(
                         text: 'Daftar',
-                        onTap: _signUp,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Main()),
+                          );
+                        },
                       ),
                 const SizedBox(height: 44),
                 Row(
@@ -181,7 +190,8 @@ class _SignupPageState extends State<SignupPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LoginPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
                         );
                       },
                       child: Text(
